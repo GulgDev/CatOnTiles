@@ -229,7 +229,7 @@ function lose() {
 function next() {
     if (getTileAt(catX, catY) == currentColor) {
         score++;
-        gameDuration = INITIAL_GAME_DURATION - (score / (WIN_SCORE / 10) || 1);
+        gameDuration = INITIAL_GAME_DURATION - (Math.floor(score / (WIN_SCORE / 10)) || 1);
         if (score >= WIN_SCORE) {
             win();
         }
