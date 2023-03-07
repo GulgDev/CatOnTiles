@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    background-color: wheat;
+}
+
+canvas {
+    position: absolute;
+    aspect-ratio: 1;
+    image-rendering: pixelated;
+}
+
+img {
+    display: none;
+}
+
+@media screen and (orientation:portrait) {
+    canvas {
+        top: 50%;
+        -ms-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        width: 100%;
+    }
+}
+
+@media screen and (orientation:landscape) {
+    canvas {
+        left: 50%;
+        -ms-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+        height: 100%;
+    }
+}
