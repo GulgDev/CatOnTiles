@@ -255,6 +255,12 @@ function menu() {
     render();
 }
 
+function reset() {
+    score = 0;
+    gameDuration = 7.5;
+    intermission();
+}
+
 function play() {
     switch (state) {
         case MENU:
