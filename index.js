@@ -6,6 +6,9 @@ const WON = 4;
 
 const MOTION_COOLDOWN = .1;
 
+const WIN_SCORE = 50;
+
+const INITIAL_GAME_DURATION = 10;
 const INTERMISSION_DURATION = 3;
 
 const COLORS = [
@@ -36,7 +39,7 @@ const isTouchEnabled = "ontouchstart" in document.documentElement;
 
 const tiles = [];
 
-let gameDuration = 7.5;
+let gameDuration = INITIAL_GAME_DURATION;
 
 let title;
 
@@ -226,8 +229,13 @@ function lose() {
 function next() {
     if (getTileAt(catX, catY) == currentColor) {
         score++;
-        gameDuration = 7.5 - score / 10 || 1;
-        intermission();
+        gameDuration = INITIAL_GAME_DURATION - (score / (WIN_SCORE / 10) || 1);
+        if (score >= WIN_SCORE) {
+            win();
+        }
+        else {
+            intermission();
+        }
     }
     else {
         lose();
@@ -257,7 +265,7 @@ function menu() {
 
 function reset() {
     score = 0;
-    gameDuration = 7.5;
+    gameDuration = INITIAL_GAME_DURATION;
     intermission();
 }
 
@@ -321,4 +329,6 @@ else {
     });
 }
 
-menu();
+title = "Загрузка...";
+renderTitle();
+window.onload = menu;
