@@ -35,6 +35,10 @@ const arrowRightSprite = document.getElementById("arrow-right");
 const arrowLeftSprite = document.getElementById("arrow-left");
 const playSprite = document.getElementById("play");
 
+const scoreSound = document.getElementById("score");
+const loseSound = document.getElementById("lose");
+const winSound = document.getElementById("win");
+
 const isTouchEnabled = "ontouchstart" in document.documentElement;
 
 const tiles = [];
@@ -211,6 +215,7 @@ function timer(info, seconds, callback) {
 function win() {
     state = WON;
     saveHighscore();
+    winSound.play();
     title = "Победа";
     canMove = false;
     clearTiles();
@@ -220,6 +225,7 @@ function win() {
 function lose() {
     state = LOST;
     saveHighscore();
+    loseSound.play();
     title = "Игра окончена";
     canMove = false;
     clearTiles();
@@ -234,6 +240,7 @@ function next() {
             win();
         }
         else {
+            scoreSound.play();
             intermission();
         }
     }
